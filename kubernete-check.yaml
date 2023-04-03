@@ -1,0 +1,43 @@
+# For replicaset all the meta data field of the pod will move inside spec
+apiVersion: apps/v1 #for replicaset make sure its apps/v1
+kind: ReplicaSet   #Replicaset kind
+metadata:
+  name: web       #Name of the ReplicaSet
+spec:
+  selector:           #it will manage all the pods where label matches key value pair app:webapp
+    matchLabels:
+      app: web
+  replicas: 1         #Number of replicas of the pod
+  template:           #Template for the pod to be created by the ReplicaSet
+    metadata:         #Metadata for the pod template
+      labels:         #Labels for the pod template
+        app: web   #Key-value pair for the label of the pod template
+
+    spec:             #Specification for the pod template
+      containers:     #Containers to be created in the pod
+        - name: web          #Name of the container
+          image: nginx:latest  #Docker image for the container
+
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: webapp
+spec:
+  #This defines which pods are going to be represented by this service
+  # the service becomes a network endpoint for either or other services
+  # or maybe external users to connect to eg browser
+  selector:
+    app: web   # the pod label we want to create service for
+    release: zero
+
+  ports:
+    - name: http #just a label
+      port: 80   #internal port of the cluster in which pod is running
+      nodePort: 30081   # only be user when type is NodePort should be greater than 30000
+
+  type: NodePort
+
+
