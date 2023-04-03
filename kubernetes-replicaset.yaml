@@ -32,7 +32,7 @@ spec:
   # or maybe external users to connect to eg browser
   selector:
     app: webapp   # the pod label we want to create service for
-    release: zero
+
 
   ports:
     - name: http #just a label
