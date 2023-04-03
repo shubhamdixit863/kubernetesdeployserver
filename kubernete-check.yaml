@@ -17,6 +17,7 @@ spec:
       containers:     #Containers to be created in the pod
         - name: web          #Name of the container
           image: chentex/go-rest-api:latest  #Docker image for the container
+        - containerPort: 8080
 
 ---
 
