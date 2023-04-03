@@ -1,0 +1,19 @@
+# For replicaset all the meta data field of the pod will move inside spec
+apiVersion: apps/v1 #for replicaset make sure its apps/v1
+kind: ReplicaSet   #Replicaset kind
+metadata:
+  name: webapp       #Name of the ReplicaSet
+spec:
+  selector:           #it will manage all the pods where label matches key value pair app:webapp
+    matchLabels:
+      app: webapp
+  replicas: 1         #Number of replicas of the pod
+  template:           #Template for the pod to be created by the ReplicaSet
+    metadata:         #Metadata for the pod template
+      labels:         #Labels for the pod template
+        app: webapp   #Key-value pair for the label of the pod template
+
+    spec:             #Specification for the pod template
+      containers:     #Containers to be created in the pod
+        - name: webapp          #Name of the container
+          image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5  #Docker image for the container

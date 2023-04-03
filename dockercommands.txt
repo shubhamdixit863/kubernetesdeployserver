@@ -1,0 +1,2 @@
+sudo docker build -t lab7 .  // running inside server folder
+sudo docker run -it -p 50051:50051 lab7  // now  you can run this image it will create a container for you
