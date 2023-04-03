@@ -35,6 +35,7 @@ spec:
 
   ports:
     - name: http #just a label
+      port: 80
       targetPort: 8080   #internal port of the cluster in which pod is running
       nodePort: 30081   # only be user when type is NodePort should be greater than 30000
 
