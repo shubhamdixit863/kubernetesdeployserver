@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: grpc-webapp
+spec:
+  #This defines which pods are going to be represented by this service
+  # the service becomes a network endpoint for either or other services
+  # or maybe external users to connect to eg browser
+  selector:
+    app: webapp   # the pod label we want to create service for
+    release: zero
+
+  ports:
+    - name: http #just a label
+      port: 50051   #internal port of the cluster in which pod is running
+      nodePort: 30080   # only be user when type is NodePort should be greater than 30000
+
+  type: NodePort

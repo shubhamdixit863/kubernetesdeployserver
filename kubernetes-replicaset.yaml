@@ -16,4 +16,4 @@ spec:
     spec:             #Specification for the pod template
       containers:     #Containers to be created in the pod
         - name: webapp          #Name of the container
-          image: richardchesterwood/k8s-fleetman-webapp-angular:release0-5  #Docker image for the container
+          image: localhost:32000/server:latest  #Docker image for the container

@@ -1,0 +1,28 @@
+
+sudo snap install microk8s --classic
+
+microk8s enable registry
+microk8s status --wait-ready
+
+
+
+docker build . -t localhost:32000/server:latest
+
+
+
+
+docker images 
+
+
+
+
+Then use the tag command:
+
+docker tag 1fe3d8f47868 localhost:32000/mynginx:registry
+
+
+
+
+Now that the image is tagged correctly, it can be pushed to the registry:
+
+docker push localhost:32000/server
